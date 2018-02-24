@@ -4,6 +4,6 @@ ResNet20, CIFAR-10,
   
   
   
-### reference
+### Reference
   
 Deep Residual Learning for Image Recognition, http://arxiv.org/abs/1512.03385
