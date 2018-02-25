@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: limingfan
 
-"""
 
 import os
 import time

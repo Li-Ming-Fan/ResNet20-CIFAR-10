@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: limingfan
 
-"""
 
 
 data_dir = './cifar-10-batches-py'

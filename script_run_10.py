@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-@author: limingfan
 
-"""
 
 import model_data_cifar_10 as model_data
 import model_resnet_20 as model_wrap
