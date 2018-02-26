@@ -27,7 +27,7 @@ DECAY_STAIRCASE = True
 DECAY_STEPS = 32000
 MOMENTUM = 0.9
 #
-VALID_FREQ = 10
+VALID_FREQ = 100
 #
 MODEL_DIR = './model_resnet'
 MODEL_NAME = 'model_resnet'
@@ -275,21 +275,12 @@ class ResNetModel():
                 #
                 print('train graph defined, training = %s' % train)
                 #
-                
-    def prepare_for_validation(self, flag_act):
+
+    def validate(self, data_valid, flag_act):
         #
         # validation graph
         self.graph = tf.Graph()
         self.z_define_graph_all(self.graph, flag_act, self.z_valid_option)
-        #
-        # sess
-        with self.graph.as_default():
-            sess = tf.Session(config = self.z_sess_config)
-        #
-        self.sess = sess
-        #
-
-    def validate(self, data_valid):
         #
         with self.graph.as_default():
             #
@@ -375,9 +366,6 @@ class ResNetModel():
         self.z_graph = tf.Graph()
         self.z_define_graph_all(self.z_graph, flag_act)
         #
-        # validation graph and sess
-        self.prepare_for_validation(flag_act)
-        #
         # begin to train
         with self.z_graph.as_default():
             #
@@ -428,11 +416,11 @@ class ResNetModel():
                         #
                         # validate
                         print('validating ...')
-                        acc_t, loss_mt = self.validate(data_train)
+                        acc_t, loss_mt = self.validate(data_train, flag_act)
                         #acc_t = 0.0, loss_mt = 0.0
                         #
                         print('validating ...')
-                        acc_v, loss_mv = self.validate(data_valid)
+                        acc_v, loss_mv = self.validate(data_valid, flag_act)
                         #
                         file_path = self.z_model_dir + '/valiation_accuracy.txt'
                         with open(file_path, 'a') as f:
